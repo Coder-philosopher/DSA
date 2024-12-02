@@ -11,33 +11,41 @@ int main() {
         return 1; 
     }
 
-    int ques[1000], sec[1000] = {0}; // Initialize `sec` with 0
-    cout << "Enter " << n << " elements of the array:" << endl;
+    int ques[1000], sec[1000] = {0};
+    cout << "Enter " << n << " elements of the array{must be less than 1000}:" << endl;
     for (int i = 0; i < n; i++) {
         cin >> ques[i];
     }
 
-    // Count occurrences of each unique element
     for (int i = 0; i < n; i++) {
         if (ques[i] == 1001) { 
-            continue; // Skip already processed elements
+            continue; 
         }
         
-        int count = 1; // Start counting from 1 (current element itself)
+        int count = 1;
         for (int j = i + 1; j < n; j++) {
             if (ques[i] == ques[j]) {
                 count++;
-                ques[j] = 1001; // Mark as processed
+                ques[j] = 1001; 
             }
         }
-        sec[i] = count; // Store count for this element
+        sec[i] = count; 
     }
 
-    // Display unique elements with their counts
-    cout << "Unique elements and their counts:" << endl;
+    cout << "Elements and their counts:" << endl;
     for (int i = 0; i < n; i++) {
         if (ques[i] != 1001) {
             cout << ques[i] << ": " << sec[i] << endl;
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (ques[i] != 1001) {  
+            if (sec[i] == 1) {
+                cout << "Element " << ques[i] << " is Unique" << endl;
+            } else {
+                cout << "Element"<<ques[i]<< "has Duplicate Copies" << endl;
+            }           
         }
     }
 
